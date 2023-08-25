@@ -1,0 +1,9 @@
+<p>Below is Child Component</p>
+<app-child *ngFor="let item of villains"
+[villain]="item"
+[heroName]="hero"
+(killVillain)="sajibKill($event)">
+</app-child>
+{{sajibkills}}
+
+
