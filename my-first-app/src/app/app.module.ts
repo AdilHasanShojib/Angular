@@ -9,6 +9,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BindingComponent } from './pages/binding/binding.component';
 import { ParentComponent } from './pages/binding/parent/parent.component';
 import { ChildComponent } from './pages/binding/child/child.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryService } from './pages/_service/in-memory.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,11 @@ import { ChildComponent } from './pages/binding/child/child.component';
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryService,{dataEncapsulation:false}
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
