@@ -11,21 +11,21 @@ export class InMemoryService implements InMemoryDbService {
   
   createDb( ) {
     
-    const Students : Student [] =[
+    const students : Student [] =[
 
 
-      {id:1,name:"adil"},
-      {id:2,name:"Sani"},
-      {id:3,name:"Tisha"}
+      {id:1,name:"adil",description:'Sojib is a good boy'},
+      {id:2,name:"Sani",description:'Sunny is a innocent boy'},
+      {id:3,name:"Tisha",description:'Tisha is a Lovely girl'}
     
     
     
     ];
-        return {Students}
+        return {students}
   }
 
-  genId(Students: Student [] ): number {
-   return Students.length > 0 ? Math.max(...Students.map((x)=>x.id))+1
+  genId(students: Student [] ): number {
+   return students.length > 0 ? Math.max(...students.map((x)=>x.id))+1
    :11;
 
   }

@@ -10,8 +10,10 @@ import { BindingComponent } from './pages/binding/binding.component';
 import { ParentComponent } from './pages/binding/parent/parent.component';
 import { ChildComponent } from './pages/binding/child/child.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+
 import { InMemoryService } from './pages/_service/in-memory.service';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { StudentsDetailsComponent } from './pages/dashboard/students-details/students-details.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +22,17 @@ import { InMemoryService } from './pages/_service/in-memory.service';
     DashboardComponent,
     BindingComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    StudentsDetailsComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryService,{dataEncapsulation:false}
+    // )
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryService,{dataEncapsulation:false}
     )
