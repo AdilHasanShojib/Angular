@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Student } from '../_models/student';
 import { StudentService } from '../_service/student.service';
 import { NavigationExtras, Router } from '@angular/router';
+import { Subject, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,14 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
    students: Student[]=[];
+   searchTerms = new Subject<string>();
    constructor(private studentService: StudentService,private router:Router){
     
    }
   ngOnInit(): void {
     this.loadStudent();
+
+    this.searchStudentFromDB();
   }
 
  loadStudent(){
@@ -59,7 +63,30 @@ if(res){
 
 }
 
+searchStudent(terms: string){
+  
+ if(!terms){
+  this.loadStudent();
+ }
+  this.searchTerms.next(terms);
+
+}
 
 
+
+searchStudentFromDB(){
+
+  let resultObs=this.searchTerms.pipe(
+     debounceTime(300),
+     distinctUntilChanged(),
+     switchMap((term:string)=>this.studentService.searchStudents(term))
+  );
+  if(resultObs){
+    resultObs.subscribe(result =>{
+      this.students=result;
+    });
+  }
+
+}
 
 }
