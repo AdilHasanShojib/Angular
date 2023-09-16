@@ -22,6 +22,7 @@ export class NavBarnavComponent implements OnInit {
 
       {routerName:'parent', displayName:'Parent'},
       {routerName:'dashboard', displayName:'DashBoard'},
+      {routerName:'banner', displayName:'Banner'},
     ]
 
 
